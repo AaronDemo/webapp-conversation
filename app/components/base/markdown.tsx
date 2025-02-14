@@ -3,6 +3,7 @@ import 'katex/dist/katex.min.css'
 import RemarkMath from 'remark-math'
 import RemarkBreaks from 'remark-breaks'
 import RehypeKatex from 'rehype-katex'
+import RehypeRaw from 'rehype-raw'
 import RemarkGfm from 'remark-gfm'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atelierHeathLight } from 'react-syntax-highlighter/dist/esm/styles/hljs'
@@ -14,8 +15,12 @@ export function Markdown(props: { content: string }) {
         remarkPlugins={[RemarkMath, RemarkGfm, RemarkBreaks]}
         rehypePlugins={[
           RehypeKatex,
+          RehypeRaw,
         ]}
         components={{
+          a: ({ node, children, ...props }) => {
+            return <a {...props} target="_blank" rel="noopener noreferrer">{children}</a>
+          },
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '')
             return (!inline && match)

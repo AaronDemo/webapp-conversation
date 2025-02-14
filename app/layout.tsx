@@ -1,4 +1,5 @@
 import { getLocaleOnServer } from '@/i18n/server'
+import { AuthProvider } from '@/context/authContext'
 
 import './styles/globals.css'
 import './styles/markdown.scss'
@@ -14,7 +15,9 @@ const LocaleLayout = ({
       <body className="h-full">
         <div className="overflow-x-auto">
           <div className="w-screen h-screen min-w-[300px]">
-            {children}
+            <AuthProvider>
+              {children}
+            </AuthProvider>
           </div>
         </div>
       </body>

@@ -1,15 +1,18 @@
 import type { FC } from 'react'
 import React from 'react'
+import Link from 'next/link'
 import {
   Bars3Icon,
   PencilSquareIcon,
 } from '@heroicons/react/24/solid'
 import AppIcon from '@/app/components/base/app-icon'
+import { useAuth } from '@/context/authContext'
 export type IHeaderProps = {
   title: string
   isMobile?: boolean
   onShowSideBar?: () => void
   onCreateNewChat?: () => void
+  onLogin?: () => void
 }
 const Header: FC<IHeaderProps> = ({
   title,
@@ -17,8 +20,26 @@ const Header: FC<IHeaderProps> = ({
   onShowSideBar,
   onCreateNewChat,
 }) => {
+  const { isAuthenticated } = useAuth();
   return (
     <div className="shrink-0 flex items-center justify-between h-12 px-3 bg-gray-100">
+      {!isMobile && (
+        <>
+          {isAuthenticated && (
+            <Link href="/login">
+              <button
+                className="px-3 py-1 text-sm font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700"
+                onClick={() => {
+                  const { setIsAuthenticated } = useAuth();
+                  setIsAuthenticated(false);
+                }}
+              >
+                退出登录
+              </button>
+            </Link>
+          )}
+        </>
+      )}
       {isMobile
         ? (
           <div

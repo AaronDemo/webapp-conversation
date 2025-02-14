@@ -168,12 +168,8 @@ const Answer: FC<IAnswerProps> = ({
   return (
     <div key={id}>
       <div className='flex items-start'>
-        <div className={`${s.answerIcon} w-10 h-10 shrink-0`}>
-          {isResponding
-            && <div className={s.typeingIcon}>
-              <LoadingAnim type='avatar' />
-            </div>
-          }
+        <div className="flex items-center justify-center w-10 h-10 shrink-0">
+          <img src="./favicon.ico" alt="聊天机器人头像" className="w-10 h-10 rounded-full" />
         </div>
         <div className={`${s.answerWrap}`}>
           <div className={`${s.answer} relative text-sm text-gray-900`}>

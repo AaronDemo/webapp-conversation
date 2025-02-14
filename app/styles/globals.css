@@ -126,3 +126,72 @@ a {
   background-clip: text;
   text-fill-color: transparent;
 }
+
+/* Sci-fi background animations */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-gradient-move {
+  animation: gradientMove 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-particle-move {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: particleMove 2s ease-in-out infinite;
+}
+
+.particle-1 {
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  top: 60%;
+  left: 75%;
+  animation-delay: 1.5s;
+}
+
+.particle-3 {
+  top: 30%;
+  left: 50%;
+  animation-delay: 2.5s;
+}
