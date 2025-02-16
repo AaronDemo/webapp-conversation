@@ -620,6 +620,7 @@ const Main: FC<IMainProps> = () => {
 
   return (
     <div className='bg-gray-100'>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
       <Header
         title={APP_INFO.title}
         isMobile={isMobile}
