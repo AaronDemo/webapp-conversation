@@ -1,11 +1,12 @@
 "use client";
-import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import * as ww from "@wecom/jssdk";
 import { useEffect } from "react";
-import { Home } from '../components/base/icons/workflow';
 import { useAuth } from '@/context/authContext';
+import { redirect } from 'next/navigation'
 export default function LoginPage() {
+
+    console.log('进入登录页')
     const { code, loginWithWeChat } = useAuth();
     const router = useRouter();
     const initializeWeCom = () => {
@@ -24,8 +25,7 @@ export default function LoginPage() {
                 console.log("[isWeComLogin]", isWeComLogin);
             },
             onLoginSuccess({ code }) {
-                console.log({ code });
-                // loginWithWeChat(code);
+                console.log(code.toString());
                 localStorage.setItem('wechat-code', code);
                 router.push('/');
             },
@@ -45,6 +45,8 @@ export default function LoginPage() {
                 console.log("Component unmounted");
                 wwLogin.unmount();
             };
+        } else {
+            redirect('/')
         }
     }, [code]);
 
